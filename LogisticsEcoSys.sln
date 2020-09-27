@@ -11,9 +11,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra.BUs", "Infra.BUs", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared.Kernel", "Shared.Kernel", "{04215F60-E62D-44A9-9922-0B8E60FB9594}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Core", "Domain\Domain.Core\Domain.Core.csproj", "{42AA753B-A3FB-4CBD-B24E-60E4C583FD2C}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42AA753B-A3FB-4CBD-B24E-60E4C583FD2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42AA753B-A3FB-4CBD-B24E-60E4C583FD2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42AA753B-A3FB-4CBD-B24E-60E4C583FD2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42AA753B-A3FB-4CBD-B24E-60E4C583FD2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{42AA753B-A3FB-4CBD-B24E-60E4C583FD2C} = {3F418BE3-1F5C-4F0A-BE2D-0818EF425BF3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {20D83F28-8217-4F89-A4C3-793F79D05026}
