@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace MessageBroker.Infra.Bus
 {
@@ -30,8 +31,19 @@ namespace MessageBroker.Infra.Bus
 
         public void Publish<T>(T @event) where T : Event
         {
-            //var factory = new ConnectionFactory() { HostName = "localhost"};
+            var factory = new ConnectionFactory() { HostName = "localhost"};
+            using (var connection = factory.CreateConnection())
+            using (var channel = connection.CreateModel())
+            {
+                var eventName = @event.GetType().Name;
 
+                channel.QueueDeclare(eventName, false, false, false, null);
+
+                var message = JsonConvert.SerializeObject(@event);
+                var body = Encoding.UTF8.GetBytes(message);
+
+                channel.BasicPublish("",eventName, null, body);
+            }
         }
 
         public void Subscribe<T, TH>()
