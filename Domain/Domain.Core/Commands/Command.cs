@@ -9,12 +9,10 @@ namespace Domain.Core.Commands
     {
         //hanya inherit class ini yang bisa melakukan set
         public DateTime Timestamp { get; protected set; }
-        public string InitialName { get; protected set; }
         
-        protected Command(string initialName)
+        protected Command()
         {
             Timestamp = DateTime.Now;
-            InitialName = initialName;
         }
     }
 }

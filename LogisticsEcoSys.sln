@@ -15,11 +15,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra.Bus", "Infra.Bus", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBroker.Infra.Bus", "Infra.Bus\MessageBroker.Infra.Bus\MessageBroker.Infra.Bus.csproj", "{154DBFAB-30CF-486B-AA35-4F0570ACD4B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.IoC", "Infra.IoC\Infra.IoC.csproj", "{EBAE703A-C468-47E2-9738-29498CAC3356}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.IoC", "Infra.IoC\Infra.IoC.csproj", "{EBAE703A-C468-47E2-9738-29498CAC3356}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logger.Service", "Logger.Service", "{8C9B9FE6-B172-4419-A154-4755592060BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerService", "LoggerService\LoggerService.csproj", "{0B0DC210-8343-4130-8AAB-689EDA3F3223}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "LoggerService\LoggerService.csproj", "{0B0DC210-8343-4130-8AAB-689EDA3F3223}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inventory", "Inventory", "{7D19A794-1640-4110-BB17-DF0109C7528F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{DF668C8C-9FFA-4046-A719-113C3069B4C6}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Data\netcore-codemaze\Source Code\02-Configuring a Logging Service in .NET Core\CompanyEmployees\CompanyEmployees\nlog.config = ..\..\..\..\Data\netcore-codemaze\Source Code\02-Configuring a Logging Service in .NET Core\CompanyEmployees\CompanyEmployees\nlog.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{BF952D26-37AE-48D7-999C-A9FD1EF715BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{44B41D40-638F-4314-8D7A-3FAD5741F353}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{D08DE3BE-3CB9-45F4-995F-E5DD2D761E45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Domain", "Inventory.Domain\Inventory.Domain.csproj", "{2F02D13A-8905-4220-889D-3A3242A90381}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +58,10 @@ Global
 		{0B0DC210-8343-4130-8AAB-689EDA3F3223}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B0DC210-8343-4130-8AAB-689EDA3F3223}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B0DC210-8343-4130-8AAB-689EDA3F3223}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F02D13A-8905-4220-889D-3A3242A90381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F02D13A-8905-4220-889D-3A3242A90381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F02D13A-8905-4220-889D-3A3242A90381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F02D13A-8905-4220-889D-3A3242A90381}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +71,12 @@ Global
 		{154DBFAB-30CF-486B-AA35-4F0570ACD4B2} = {333E51C4-76E8-4A51-8F0B-AC948301899F}
 		{EBAE703A-C468-47E2-9738-29498CAC3356} = {04215F60-E62D-44A9-9922-0B8E60FB9594}
 		{0B0DC210-8343-4130-8AAB-689EDA3F3223} = {8C9B9FE6-B172-4419-A154-4755592060BB}
+		{7D19A794-1640-4110-BB17-DF0109C7528F} = {E314B386-B7BF-45AD-92F1-FB70BD294488}
+		{DF668C8C-9FFA-4046-A719-113C3069B4C6} = {7D19A794-1640-4110-BB17-DF0109C7528F}
+		{BF952D26-37AE-48D7-999C-A9FD1EF715BD} = {7D19A794-1640-4110-BB17-DF0109C7528F}
+		{44B41D40-638F-4314-8D7A-3FAD5741F353} = {7D19A794-1640-4110-BB17-DF0109C7528F}
+		{D08DE3BE-3CB9-45F4-995F-E5DD2D761E45} = {7D19A794-1640-4110-BB17-DF0109C7528F}
+		{2F02D13A-8905-4220-889D-3A3242A90381} = {BF952D26-37AE-48D7-999C-A9FD1EF715BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {20D83F28-8217-4F89-A4C3-793F79D05026}
