@@ -34,7 +34,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{D08DE3BE-3CB9-45F4-995F-E5DD2D761E45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Domain", "Inventory.Domain\Inventory.Domain.csproj", "{2F02D13A-8905-4220-889D-3A3242A90381}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.Domain", "Inventory.Domain\Inventory.Domain.csproj", "{2F02D13A-8905-4220-889D-3A3242A90381}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
