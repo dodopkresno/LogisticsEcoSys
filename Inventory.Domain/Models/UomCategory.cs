@@ -8,20 +8,8 @@ namespace Inventory.Domain.Models
 {
     public class UomCategory : BaseEntity
     {
-        private string _name;
-        private int _measureTypeId;
-        public UomCategory(string name, int MeasureTypeId)
-        {
-            this._name = name;
-            this._measureTypeId = MeasureTypeId;
-        }
-
-        public Guid Id { get; set; }
-        public int intest { get; set; }
-
-        public string name { get; private set; }
-
-        public MeasureType MeasureType { get; private set; }
-
+        public Guid UoMCategoryId { get; set; }
+        public string name { get; set; }
+        public MeasureType MeasureType { get; set; }
     }
 }
