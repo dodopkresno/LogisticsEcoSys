@@ -9,7 +9,7 @@ namespace Inventory.Data.Context
 {
     public class InventoryContext : DbContext
     {
-        public const string DEFAULT_SCHEMA = "inventory";
+        //public const string DEFAULT_SCHEMA = "inventory";
         public InventoryContext(DbContextOptions options) : base(options)
         {
         }
