@@ -25,7 +25,7 @@ namespace Infra.IoC
             services.AddTransient<IEventBus, RabbitMQBus>();
 
             services.AddDbContext<InventoryContext>(opts =>
-                opts.UseNpgsql(configuration.GetConnectionString("InventoryDBConnection"), b => b.MigrationsAssembly("Inventory.API")));
+                opts.UseNpgsql(configuration.GetConnectionString("InventoryDBConnection"), b => b.MigrationsAssembly("Inventory.Data")));
 
             //Repository
             //Inventory Repository

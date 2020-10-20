@@ -1,4 +1,5 @@
-﻿using Inventory.Domain.Models;
+﻿using Inventory.Data.Context;
+using Inventory.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -11,11 +12,22 @@ namespace Inventory.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<UomCategory> builder) 
         {
+            builder.ToTable("UomCategories", InventoryContext.DEFAULT_SCHEMA);
+
             builder.HasKey(k => k.UoMCategoryId);
+
             builder.Property(p => p.UoMCategoryId);
+
             builder.Property(p => p.name)
                 .IsRequired()
                 .HasMaxLength(15);
+
+            builder.Property(p => p.description)
+                .IsRequired()
+                .HasMaxLength(200);
+
+            builder.HasIndex(s => s.name)
+                .IsUnique();
         }
     }
 }

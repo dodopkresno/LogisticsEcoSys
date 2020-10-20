@@ -10,6 +10,7 @@ namespace Inventory.Domain.Models
     {
         public Guid UoMCategoryId { get; set; }
         public string name { get; set; }
+        public string description { get; set; }
         public MeasureType MeasureType { get; set; }
     }
 }

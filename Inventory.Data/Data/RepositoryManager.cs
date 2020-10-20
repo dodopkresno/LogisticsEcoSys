@@ -1,5 +1,4 @@
 ﻿using Inventory.Data.Context;
-using Inventory.Data.Interface;
 using Inventory.Domain.Interface;
 using System;
 using System.Collections.Generic;
@@ -12,6 +11,7 @@ namespace Inventory.Data.Data
     {
         private InventoryContext _inventoryContext;
         private IUoMCategoryRepo _uomCategoryRepo;
+        private IUoMRepository _uomRepo;
         public RepositoryManager(InventoryContext inventoryContext)
         {
             _inventoryContext = inventoryContext;
@@ -27,9 +27,20 @@ namespace Inventory.Data.Data
             }
         }
 
-        public Task SaveAsync()
+        public IUoMRepository Uom
         {
-            throw new NotImplementedException();
+            get
+            {
+                if (_uomRepo == null)
+                    _uomRepo = new UoMRepository(_inventoryContext);
+
+                return _uomRepo;
+            }
+        }
+
+        public async Task SaveAsync()
+        {
+            await _inventoryContext.SaveChangesAsync();
         }
     }
 }
