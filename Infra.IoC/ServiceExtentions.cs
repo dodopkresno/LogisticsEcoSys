@@ -5,6 +5,7 @@ using Domain.Core.Bus;
 using Inventory.Data.Context;
 using Inventory.Data.Data;
 using Inventory.Data.Interface;
+using Inventory.Domain.Interface;
 using LoggerService;
 using MessageBroker.Infra.Bus;
 using Microsoft.EntityFrameworkCore;

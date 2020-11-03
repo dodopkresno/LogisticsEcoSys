@@ -12,5 +12,14 @@ namespace Inventory.Domain.Models
         public string name { get; set; }
         public string description { get; set; }
         public MeasureType MeasureType { get; set; }
+
+        //public bool canPostUomCategory(string data)
+        //{
+        //    bool param = true;
+        //    if (data == null)
+        //        param = false;
+
+        //    return param;
+        //}
     }
 }

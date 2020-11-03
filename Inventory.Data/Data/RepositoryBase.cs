@@ -20,12 +20,12 @@ namespace Inventory.Data.Data
             InventoryContext = inventoryContext;
         }
 
-        public void CreateAsync(T entity)
+        public void Create(T entity)
         {
             InventoryContext.Set<T>().Add(entity);
         }
 
-        public void DeleteAsync(T entity)
+        public void Delete(T entity)
         {
             InventoryContext.Set<T>().Remove(entity);
         }
@@ -40,7 +40,7 @@ namespace Inventory.Data.Data
             return !trackChanges ? InventoryContext.Set<T>().Where(expression).AsNoTracking() : InventoryContext.Set<T>().Where(expression);
         }
 
-        public void UpdateAsync(T entity)
+        public void Update(T entity)
         {
             InventoryContext.Set<T>().Update(entity);
         }

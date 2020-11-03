@@ -24,9 +24,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inventory", "Inventory", "{7D19A794-1640-4110-BB17-DF0109C7528F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{DF668C8C-9FFA-4046-A719-113C3069B4C6}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\Data\netcore-codemaze\Source Code\02-Configuring a Logging Service in .NET Core\CompanyEmployees\CompanyEmployees\nlog.config = ..\..\..\..\Data\netcore-codemaze\Source Code\02-Configuring a Logging Service in .NET Core\CompanyEmployees\CompanyEmployees\nlog.config
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{BF952D26-37AE-48D7-999C-A9FD1EF715BD}"
 EndProject
@@ -44,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.Data", "Inventory
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.Application", "Inventory.Application\Inventory.Application.csproj", "{CB26AA8C-48DC-44B9-89F9-1EE3EF6AB9C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.API", "Inventory.API\Inventory.API.csproj", "{79CAF5CF-838A-4E9A-9E0D-E4D982D9F48A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.API", "Inventory.API\Inventory.API.csproj", "{79CAF5CF-838A-4E9A-9E0D-E4D982D9F48A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

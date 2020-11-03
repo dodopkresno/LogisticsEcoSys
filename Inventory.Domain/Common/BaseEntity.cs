@@ -16,5 +16,11 @@ namespace Inventory.Domain.Common
         {
             LastModified = DateTime.Now;
         }
+
+        public void setObjStatus(string userBy, bool oStatus = true)
+        {
+            IsActive = !oStatus ? false : true;
+            LastModifiedBy = userBy;
+        }
     }
 }

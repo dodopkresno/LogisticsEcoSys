@@ -8,8 +8,8 @@ namespace Inventory.Domain.Common
 {
     public abstract class Enumeration : IComparable
     {
-        public string _name { get; private set; }
-        public int _id { get; private set; }
+        private string _name { get; set; }
+        private int _id { get; set; }
 
         protected Enumeration(int id, string name)
         {
