@@ -24,7 +24,8 @@ namespace Inventory.Application.Mapping
             {
                 name = request.name,
                 description = request.description,
-                MeasureType = data
+                MeasureType = data,
+                LastModifiedBy = request.updatedBy
             };
             return item;
         }
@@ -38,7 +39,8 @@ namespace Inventory.Application.Mapping
                 UoMCategoryId = request.UCID,
                 name = request.name,
                 description = request.description,
-                MeasureType = data
+                MeasureType = data,
+                LastModifiedBy = request.updatedBy
             };
             
             return item;

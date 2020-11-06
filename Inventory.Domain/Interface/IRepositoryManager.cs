@@ -9,6 +9,7 @@ namespace Inventory.Domain.Interface
     {
         IUoMCategoryRepo UoMCategory { get; }
         IUoMRepository Uom { get;  }
+        IPermissionRepository Permission { get; }
         Task SaveAsync();
     }
 }
