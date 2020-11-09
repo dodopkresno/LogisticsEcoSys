@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace Inventory.Application.Requests
+namespace Inventory.Application.Requests.UomCategory
 {
     public class UpdateStatusUomCategory
     {

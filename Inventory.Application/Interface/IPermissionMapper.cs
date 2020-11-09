@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Inventory.Application.Mapping
+namespace Inventory.Application.Interface
 {
     public interface IPermissionMapper
     {

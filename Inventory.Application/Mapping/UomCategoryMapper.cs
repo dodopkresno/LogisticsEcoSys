@@ -1,4 +1,7 @@
-﻿using Inventory.Application.Requests;
+﻿using AutoMapper;
+using Inventory.Application.Interface;
+using Inventory.Application.Requests.UomCategory;
+using Inventory.Application.Responses.UomCategory;
 using Inventory.Domain.Enums;
 using Inventory.Domain.Models;
 using System;
@@ -10,10 +13,12 @@ namespace Inventory.Application.Mapping
     public class UomCategoryMapper : IUomCategoryMapper
     {
         private readonly IUomCategoryMapper _uomCategoryMapper;
+        private readonly IMapper _mapper;
 
-        public UomCategoryMapper(IUomCategoryMapper uomCategoryMapper)
+        public UomCategoryMapper(IUomCategoryMapper uomCategoryMapper, IMapper mapper)
         {
             _uomCategoryMapper = uomCategoryMapper;
+            _mapper = mapper;
         }
 
         public UomCategory Map(AddUoMCategory request)
@@ -44,6 +49,13 @@ namespace Inventory.Application.Mapping
             };
             
             return item;
+        }
+        public DataResponse Map(UomCategory request)
+        {
+            if (request == null) return null;
+
+            var response = _mapper.Map<DataResponse>(request);
+            return response;
         }
     }
 }

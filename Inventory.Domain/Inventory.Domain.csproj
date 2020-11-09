@@ -8,4 +8,8 @@
     <ProjectReference Include="..\Inventory.Exception\Inventory.Exception.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Aggregate\" />
+  </ItemGroup>
+
 </Project>

@@ -1,13 +1,12 @@
 ﻿using Inventory.Application.Interface;
-using Inventory.Application.Mapping;
-using Inventory.Application.Requests;
+using Inventory.Application.Requests.UomCategory;
+using Inventory.Application.Responses.UomCategory;
 using Inventory.Domain.Enums;
 using Inventory.Domain.Interface;
-using Inventory.Domain.Models;
 using Inventory.Exception;
-using LoggerService;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Inventory.Application.Services
@@ -15,16 +14,14 @@ namespace Inventory.Application.Services
     public class UomCategoryService : IUomCategoryService
     {
         private readonly IRepositoryManager _repository;
-        private readonly ILoggerManager _logger;
         private readonly IUomCategoryMapper _uomCategoryMapper;
-        public UomCategoryService(IRepositoryManager repository, ILoggerManager logger, IUomCategoryMapper UomCategoryMapper)
+        public UomCategoryService(IRepositoryManager repository, IUomCategoryMapper UomCategoryMapper)
         {
             _repository = repository;
-            _logger = logger;
             _uomCategoryMapper = UomCategoryMapper;
         }
 
-        public async Task<UomCategory> AddUomCategory(AddUoMCategory request)
+        public async Task<DataResponse> AddUomCategoryAsync(AddUoMCategory request)
         {
             var item = _uomCategoryMapper.Map(request);
             var objToSearch = await _repository.UoMCategory.GetDataByType(request.Id, trackChanges: false);
@@ -33,20 +30,18 @@ namespace Inventory.Application.Services
             {
                 _repository.UoMCategory.AddUomCategory(item);
                 await _repository.SaveAsync();
+                return _uomCategoryMapper.Map(item);
             }
-            else { 
-                _logger.LogError($"Telah ada measure type serupa"); //draft
-                throw new InventoryException("Telah ada measure type serupa");
+            else {
+                return null;
+                throw new InventoryException($"Cann't store double measure type { item.MeasureType.Name }. Duplicate data with { item.name }.");
             }
-
-            return item;
         }
-        public async Task<UomCategory> EditUomCategory(EditUomCategory request)
+        public async Task<DataResponse> EditUomCategoryAsync(EditUomCategory request)
         {
             var objToCheck = await _repository.UoMCategory.GetDataAsync(request.UCID, trackChanges: false);
             if (objToCheck == null)
             {
-                _logger.LogError($"Entity with {request.UCID} is not present");
                 throw new InventoryException($"Entity with {request.UCID} is not present");
             }
             var item = _uomCategoryMapper.Map(request);
@@ -56,35 +51,42 @@ namespace Inventory.Application.Services
             {
                 _repository.UoMCategory.UpdateUomCategory(item);
                 await _repository.SaveAsync();
+
+                return _uomCategoryMapper.Map(item);
             }
             else
             {
-                _logger.LogError($"Entity ID {request.UCID} with MeasureType Code {request.Id} already exists");
+                return null;
                 throw new InventoryException($"Entity ID {request.UCID} with MeasureType Code {request.Id} already exists");
             }
+        }
+        public async Task<DataResponse> GetDataAsync(GetDataRequest request)
+        {
+            if (request?.Id == null) throw new ArgumentNullException();
+            var result = await _repository.UoMCategory.GetDataAsync(request.Id, trackChanges: false);
 
-            return item;
+            if (result == null)
+            {
+                return null;
+                throw new InventoryException($"Entity with id: { request.Id } doesn't exist.");
+            }
+            else
+            {
+                return _uomCategoryMapper.Map(result);
+            }
         }
 
-        public async Task<IEnumerable<UomCategory>> GetAllAsync()
+        public async Task<IEnumerable<DataResponse>> GetAllAsync()
         {
-            try
-            {
-                var result = await _repository.UoMCategory.GetAllAsync(trackChanges: false);
-                return result;
-            }
-            catch (ApplicationException e)
-            {
-                _logger.LogError($"Failure Get Data for UoM Category: { e.Message}");
-                throw new InventoryException("Failure Get Data for UoM Category");
-            }
+            var result = await _repository.UoMCategory.GetAllAsync(trackChanges: false);
+            return result.Select(i => _uomCategoryMapper.Map(i));
         }
         public IEnumerable<MeasureType> GetMeasureType()
         {
             var result = MeasureType.List();
             return result;
         }
-        public async Task<UomCategory> SetObjStatus(UpdateStatusUomCategory request)
+        public async Task<DataResponse> SetObjStatusAsync(UpdateStatusUomCategory request)
         {
             var objTobeChanged = await _repository.UoMCategory.GetDataAsync(request.ucid, trackChanges: false);
             objTobeChanged.setObjStatus(request.userBy, request.isActive);
@@ -93,14 +95,12 @@ namespace Inventory.Application.Services
             {
                 await _repository.SaveAsync();
             }
-            catch (ApplicationException e)
+            catch
             {
-                _logger.LogError($"Failure update status: { e.Message}");
                 throw new InventoryException("Failure update status");
             }
 
-            return objTobeChanged;
+            return _uomCategoryMapper.Map(objTobeChanged);
         }
-
     }
 }

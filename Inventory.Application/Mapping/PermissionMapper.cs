@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Inventory.Application.Interface;
 using Inventory.Application.Requests;
 using Inventory.Domain.Models;
 using System;
