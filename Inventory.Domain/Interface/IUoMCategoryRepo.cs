@@ -14,5 +14,6 @@ namespace Inventory.Domain.Interface
         Task<IEnumerable<UomCategory>> GetDataListByType(int id, bool trackChanges);
         void AddUomCategory(UomCategory uomCategory);
         void UpdateUomCategory(UomCategory uomCategory);
+        void DeleteUomCategory(UomCategory uomCategory);
     }
 }

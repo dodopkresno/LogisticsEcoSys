@@ -44,25 +44,35 @@ namespace Inventory.Application.Services
         public async Task<DataResponse> EditUomCategoryAsync(EditUomCategory request)
         {
             var objToCheck = await _repository.UoMCategory.GetDataAsync(request.UCID, trackChanges: false);
-            if (objToCheck == null)
+            if (objToCheck is null)
             {
                 throw new InventoryException($"Entity with {request.UCID} is not present");
             }
             var item = _uomCategoryMapper.Map(request);
             var objToSearch = await _repository.UoMCategory.GetDataByType(request.Id, trackChanges: false);
 
-            if (objToSearch == null)
+            if (objToSearch is null || objToSearch.UoMCategoryId == request.UCID)
             {
                 _repository.UoMCategory.UpdateUomCategory(item);
                 await _repository.SaveAsync();
-
-                return _uomCategoryMapper.Map(item);
             }
             else
             {
-                return null;
                 throw new InventoryException($"Entity ID {request.UCID} with MeasureType Code {request.Id} already exists");
             }
+
+            return _uomCategoryMapper.Map(item);
+        }
+        public async Task DeleteUomCategoryAsync(DeleteUomCategory request)
+        {
+            var objToDelete = await _repository.UoMCategory.GetDataAsync(request.UCID, trackChanges: false);
+            if (objToDelete is null)
+            {
+                throw new InventoryException($"Entity with {request.UCID} is not present");
+            }
+
+            _repository.UoMCategory.DeleteUomCategory(objToDelete);
+            await _repository.SaveAsync();
         }
         public async Task<DataResponse> GetDataAsync(GetDataRequest request)
         {

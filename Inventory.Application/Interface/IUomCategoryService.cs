@@ -18,5 +18,6 @@ namespace Inventory.Application.Interface
         Task<DataResponse> AddUomCategoryAsync(AddUoMCategory request);
         Task<DataResponse> EditUomCategoryAsync(EditUomCategory request);
         IEnumerable<MeasureType> GetMeasureType();
+        Task DeleteUomCategoryAsync(DeleteUomCategory request);
     }
 }

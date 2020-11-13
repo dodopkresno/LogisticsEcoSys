@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Inventory.API.Controllers
 {
-    [Route("api/uomcatagories/[action]")]
+    [Route("api/uomcatagories/")]
     [ApiController]
     public class UomCatagoriesController : ControllerBase
     {
@@ -21,24 +21,24 @@ namespace Inventory.API.Controllers
         }
 
         [HttpGet]
-        [ActionName("all")]
+        //[ActionName("all")]
         public async Task<IActionResult> GetCatagories()
         {
             var categories = await _uomCategService.GetAllAsync();
             return Ok(categories);
         }
 
+        [Route("typelist")]
         [HttpGet]
-        [ActionName("typelist")]
+        //[ActionName("typelist")]
         public IActionResult GetMeasureType()
         {
             var measureType = _uomCategService.GetMeasureType();
             return Ok(measureType);
         }
 
-        [HttpGet("{id:guid}", Name = "CategoryById")]
-        //[HttpGet("{id:guid}")]
-        [ActionName("categorybyid")]
+        [HttpGet("id/{id:guid}", Name = "CategoryById")]
+        //[ActionName("categorybyid")]
         public async Task<IActionResult> GetCategory(Guid id)
         {
             var category = await _uomCategService.GetDataAsync(new GetDataRequest
@@ -55,19 +55,27 @@ namespace Inventory.API.Controllers
         //}
 
         [HttpPost]
-        [ActionName("add")]
+        //[ActionName("add")]
         public async Task<IActionResult> CreateUomCategory([FromBody] AddUoMCategory request)
         {
             var result = await _uomCategService.AddUomCategoryAsync(request);
             return CreatedAtRoute("CategoryById", new { id = result.UoMCategoryId }, result);
         }
 
-        //[HttpPut("id:guid")]
-        //public async Task<IActionResult> UpdateUomCategory(Guid id, [FromBody] EditUomCategory request)
-        //{
-        //    request.UCID = id;
-        //    var result = await _uomCategService.EditUomCategoryAsync(request);
-        //    return Ok(result);
-        //}
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> UpdateUomCategory(Guid id, [FromBody] EditUomCategory request)
+        {
+            request.UCID = id;
+            var result = await _uomCategService.EditUomCategoryAsync(request);
+            return Ok(result);
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteUomCategory(Guid id)
+        {
+            await _uomCategService.DeleteUomCategoryAsync(new DeleteUomCategory { UCID = id });
+
+            return NoContent();
+        }
     }
 }

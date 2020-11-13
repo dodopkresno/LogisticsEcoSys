@@ -22,16 +22,20 @@ namespace Inventory.Data.Configuration
                 .IsRequired()
                 .HasMaxLength(15);
 
+            builder.HasIndex(s => s.name)
+                .IsUnique();
+
             builder.Property(p => p.description)
                 .IsRequired()
                 .HasMaxLength(200);
 
-            builder.HasIndex(s => s.name)
-                .IsUnique();
+            builder.Property(p => p.Id)
+                .IsRequired();
 
-            builder.HasOne(r => r.MeasureType)
-                .WithMany()
-                .HasForeignKey(r => r.Id);
+            builder.Ignore(b => b.MeasureType);
+            //builder.HasOne(r => r.MeasureType)
+            //    .WithMany()
+            //    .HasForeignKey(r => r.Id);
         }
     }
 }
