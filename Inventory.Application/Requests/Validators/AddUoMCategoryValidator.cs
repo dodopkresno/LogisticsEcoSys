@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Inventory.Application.Requests.UomCategory;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Inventory.Application.Interface;
+using Inventory.Application.Requests.UomCategory;
 using System.Linq;
 
 namespace Inventory.Application.Requests.Validators

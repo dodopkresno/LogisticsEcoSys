@@ -15,6 +15,7 @@ namespace Inventory.Domain.Models
         public double ratio { get; set; }
         public Guid UoMCategoryId { get; set; }
         public UomCategory UomCategory { get; set; }
+        public int Id { get; set; }
         public UomType UomType { get; set; }
     }
 }

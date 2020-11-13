@@ -15,7 +15,7 @@ namespace Inventory.Application.Events
         public bool canupdate { get; private set; }
         public bool candelete { get; private set; }
 
-        public CreatedOrUpdatedEvent(string id, string roleId, string menuId, bool isNew, bool canCreate, bool canUpdate, bool canDelete)
+        public CreatedOrUpdatedEvent(Guid id, string roleId, string menuId, bool isNew, bool canCreate, bool canUpdate, bool canDelete)
         {
             this.id = id;
             roleid = roleId;

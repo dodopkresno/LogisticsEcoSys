@@ -13,8 +13,10 @@ namespace Inventory.Application.Interface
     {
         Task<IEnumerable<DataResponse>> GetAllAsync();
         Task<DataResponse> GetDataAsync(GetDataRequest request);
+        Task<IEnumerable<DataResponse>> GetDataListByTypeAsync(GetDataByType request);
         Task<DataResponse> SetObjStatusAsync(UpdateStatusUomCategory request);
         Task<DataResponse> AddUomCategoryAsync(AddUoMCategory request);
+        Task<DataResponse> EditUomCategoryAsync(EditUomCategory request);
         IEnumerable<MeasureType> GetMeasureType();
     }
 }

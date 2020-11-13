@@ -25,12 +25,18 @@ namespace Inventory.Data.Data
         {
             return await FindByCondition(uc => uc.UoMCategoryId.Equals(ucid), trackChanges).SingleOrDefaultAsync();
         }
-        public async Task<IEnumerable<UomCategory>> GetDataByType(int id, bool trackChanges)
+        public async Task<UomCategory> GetDataByType(int id, bool trackChanges)
+        {
+            var data = await FindByCondition(uc => uc.MeasureType.Id.Equals(id), trackChanges).FirstOrDefaultAsync();
+            //var item = data.Take(1);
+
+            return data;
+        }
+        public async Task<IEnumerable<UomCategory>> GetDataListByType(int id, bool trackChanges)
         {
             var data = await FindByCondition(uc => uc.MeasureType.Id.Equals(id), trackChanges).ToListAsync();
-            var item = data.Take(1);
-
-            return item;
+            
+            return data;
         }
         public void AddUomCategory(UomCategory uomCategory) => Create(uomCategory);
         public void UpdateUomCategory(UomCategory uomCategory) => Update(uomCategory);

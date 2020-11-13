@@ -28,6 +28,10 @@ namespace Inventory.Data.Configuration
 
             builder.HasIndex(s => s.name)
                 .IsUnique();
+
+            builder.HasOne(r => r.UomType)
+                .WithMany()
+                .HasForeignKey(r => r.Id);
         }
     }
 }

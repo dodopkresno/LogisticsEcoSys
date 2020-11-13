@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
+using Inventory.Application.Requests.UomCategory;
 
 namespace Inventory.Application.Requests.Validators
 {

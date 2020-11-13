@@ -2,6 +2,7 @@
 using Inventory.Domain.Interface;
 using System;
 using System.Collections.Generic;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace Inventory.Data.Data
         private InventoryContext _inventoryContext;
         private IUoMCategoryRepo _uomCategoryRepo;
         private IUoMRepository _uomRepo;
+        private IPermissionRepository _permissionRepo;
         public RepositoryManager(InventoryContext inventoryContext)
         {
             _inventoryContext = inventoryContext;
@@ -35,6 +37,17 @@ namespace Inventory.Data.Data
                     _uomRepo = new UoMRepository(_inventoryContext);
 
                 return _uomRepo;
+            }
+        }
+
+        public IPermissionRepository Permission
+        {
+            get 
+            {
+                if (_permissionRepo == null)
+                    _permissionRepo = new PermissionRepository(_inventoryContext);
+
+                return _permissionRepo;
             }
         }
 

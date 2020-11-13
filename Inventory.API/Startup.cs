@@ -36,7 +36,7 @@ namespace Inventory.API
             services.AddAutoMapper(typeof(Startup));
             RegisterServices(services, Configuration);
 
-            services.AddControllers();
+            services.AddControllers(opt => opt.SuppressAsyncSuffixInActionNames = false);
         }
 
         private void RegisterServices(IServiceCollection services, IConfiguration configuration)

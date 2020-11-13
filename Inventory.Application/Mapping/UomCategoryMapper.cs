@@ -12,12 +12,10 @@ namespace Inventory.Application.Mapping
 {
     public class UomCategoryMapper : IUomCategoryMapper
     {
-        private readonly IUomCategoryMapper _uomCategoryMapper;
         private readonly IMapper _mapper;
 
-        public UomCategoryMapper(IUomCategoryMapper uomCategoryMapper, IMapper mapper)
+        public UomCategoryMapper(IMapper mapper)
         {
-            _uomCategoryMapper = uomCategoryMapper;
             _mapper = mapper;
         }
 
@@ -29,8 +27,11 @@ namespace Inventory.Application.Mapping
             {
                 name = request.name,
                 description = request.description,
+                Id = request.Id,
                 MeasureType = data,
-                LastModifiedBy = request.updatedBy
+                CreatedBy = request.createdBy,
+                Created = request.created,
+                IsActive = request.isActive                
             };
             return item;
         }
@@ -44,6 +45,7 @@ namespace Inventory.Application.Mapping
                 UoMCategoryId = request.UCID,
                 name = request.name,
                 description = request.description,
+                Id = request.Id,
                 MeasureType = data,
                 LastModifiedBy = request.updatedBy
             };
@@ -54,7 +56,22 @@ namespace Inventory.Application.Mapping
         {
             if (request == null) return null;
 
-            var response = _mapper.Map<DataResponse>(request);
+            //var response = _mapper.Map<DataResponse>(request);
+            var data = MeasureType.From(request.Id);
+            var response = new DataResponse
+            {
+                UoMCategoryId = request.UoMCategoryId,
+                name = request.name,
+                description = request.description,
+                Id = request.Id,
+                MeasureType = data,
+                Created = request.Created,
+                CreatedBy = request.CreatedBy,
+                IsActive = request.IsActive,
+                LastModified = request.Created,
+                LastModifiedBy = request.LastModifiedBy
+            };
+
             return response;
         }
     }

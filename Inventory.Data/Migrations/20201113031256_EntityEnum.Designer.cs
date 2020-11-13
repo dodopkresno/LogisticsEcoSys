@@ -3,15 +3,17 @@ using System;
 using Inventory.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Inventory.Data.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    partial class InventoryContextModelSnapshot : ModelSnapshot
+    [Migration("20201113031256_EntityEnum")]
+    partial class EntityEnum
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,6 +80,9 @@ namespace Inventory.Data.Migrations
                     b.Property<Guid>("UoMCategoryId")
                         .HasColumnType("uuid");
 
+                    b.Property<int?>("UomTypeId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("description")
                         .IsRequired()
                         .HasColumnType("character varying(200)")
@@ -93,9 +98,9 @@ namespace Inventory.Data.Migrations
 
                     b.HasKey("UoMId");
 
-                    b.HasIndex("Id");
-
                     b.HasIndex("UoMCategoryId");
+
+                    b.HasIndex("UomTypeId");
 
                     b.HasIndex("name")
                         .IsUnique();
@@ -149,17 +154,15 @@ namespace Inventory.Data.Migrations
 
             modelBuilder.Entity("Inventory.Domain.Models.UoM", b =>
                 {
-                    b.HasOne("Inventory.Domain.Enums.UomType", "UomType")
-                        .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Inventory.Domain.Models.UomCategory", "UomCategory")
                         .WithMany()
                         .HasForeignKey("UoMCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Inventory.Domain.Enums.UomType", "UomType")
+                        .WithMany()
+                        .HasForeignKey("UomTypeId");
                 });
 
             modelBuilder.Entity("Inventory.Domain.Models.UomCategory", b =>

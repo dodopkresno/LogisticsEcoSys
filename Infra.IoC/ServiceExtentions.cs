@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using Domain.Core.Bus;
+using Inventory.Application.Interface;
+using Inventory.Application.Mapping;
+using Inventory.Application.Services;
 using Inventory.Data.Context;
 using Inventory.Data.Data;
 using Inventory.Data.Interface;
@@ -32,6 +35,10 @@ namespace Infra.IoC
             //Inventory Repository
             services.AddScoped<IRepositoryManager, RepositoryManager>();
             services.AddTransient<InventoryContext>();
+
+            //ApplicationService
+            services.AddScoped<IUomCategoryMapper, UomCategoryMapper>();
+            services.AddScoped<IUomCategoryService, UomCategoryService>();
         }
     }
 }

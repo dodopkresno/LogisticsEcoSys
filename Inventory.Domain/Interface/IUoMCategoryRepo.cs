@@ -10,7 +10,8 @@ namespace Inventory.Domain.Interface
     {
         Task<IEnumerable<UomCategory>> GetAllAsync(bool trackChanges);
         Task<UomCategory> GetDataAsync(Guid id, bool trackChanges);
-        Task<IEnumerable<UomCategory>> GetDataByType(int id, bool trackChanges);
+        Task<UomCategory> GetDataByType(int id, bool trackChanges);
+        Task<IEnumerable<UomCategory>> GetDataListByType(int id, bool trackChanges);
         void AddUomCategory(UomCategory uomCategory);
         void UpdateUomCategory(UomCategory uomCategory);
     }

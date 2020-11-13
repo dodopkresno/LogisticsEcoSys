@@ -11,7 +11,9 @@ namespace Inventory.Application.Mapping
     {
         public UomCategoryMapProfile()
         {
-            CreateMap<UomCategory, DataResponse>();
+            CreateMap<UomCategory, DataResponse>()
+                .ForMember(d => d.MeasureType, 
+                    opt => opt.MapFrom(s => s.MeasureType));
         }
     }
 }
