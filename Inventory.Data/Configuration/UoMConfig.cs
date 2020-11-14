@@ -21,17 +21,24 @@ namespace Inventory.Data.Configuration
             builder.Property(p => p.name)
                 .IsRequired()
                 .HasMaxLength(15);
+            builder.HasIndex(s => s.name)
+                .IsUnique();
 
             builder.Property(p => p.description)
                 .IsRequired()
                 .HasMaxLength(200);
 
-            builder.HasIndex(s => s.name)
-                .IsUnique();
+            builder.Property(p => p.UoMCategoryId)
+                .IsRequired();
 
-            builder.HasOne(r => r.UomType)
+            builder.HasOne(r => r.UomCategory)
                 .WithMany()
-                .HasForeignKey(r => r.Id);
+                .HasForeignKey(r => r.UoMCategoryId);
+
+            builder.Property(p => p.Id)
+                .IsRequired();
+
+            builder.Ignore(b => b.UomType);
         }
     }
 }

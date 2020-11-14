@@ -19,11 +19,11 @@ namespace Inventory.Data.Context
             modelBuilder.ApplyConfiguration(new UoMCategeryConfig());
             modelBuilder.ApplyConfiguration(new UoMConfig());
             //modelBuilder.ApplyConfiguration(new MeasureTypeConfig());
-            modelBuilder.ApplyConfiguration(new UomTypeConfig());
+            //modelBuilder.ApplyConfiguration(new UomTypeConfig());
         }
         public DbSet<UomCategory> UoMCategories { get; set; }
         public DbSet<UoM> Uoms { get; set; }
         //public DbSet<MeasureType> MeasureTypes { get; set; }
-        public DbSet<UomType> UomTypes { get; set; }
+        //public DbSet<UomType> UomTypes { get; set; }
     }
 }

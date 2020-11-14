@@ -10,7 +10,7 @@ namespace Inventory.Application.Interface
     public interface IUomCategoryMapper
     {
         UomCategory Map(AddUoMCategory request);
-        UomCategory Map(EditUomCategory request);
+        UomCategory Map(EditUomCategory request, UomCategory existing);
         DataResponse Map(UomCategory request);
     }
 }

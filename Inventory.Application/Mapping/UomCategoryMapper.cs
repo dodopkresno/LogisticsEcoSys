@@ -33,43 +33,36 @@ namespace Inventory.Application.Mapping
             };
             return item;
         }
-        public UomCategory Map(EditUomCategory request)
+        public UomCategory Map(EditUomCategory request, UomCategory existing)
         {
             if (request == null) return null;
             
-            var data = MeasureType.From(request.Id);
-            var item = new UomCategory
-            {
-                UoMCategoryId = request.UCID,
-                name = request.name,
-                description = request.description,
-                Id = request.Id,
-                //MeasureType = data,
-                LastModifiedBy = request.updatedBy
-            };
-            
-            return item;
+            existing.name = request.name;
+            existing.description = request.description;
+            existing.Id = request.Id;
+            existing.LastModifiedBy = request.updatedBy;
+            existing.LastModified = DateTime.Now;
+
+            return existing;
         }
         public DataResponse Map(UomCategory request)
         {
             if (request == null) return null;
             
             var data = MeasureType.From(request.Id);
-            request.MeasureType = data;
-            var response = _mapper.Map<DataResponse>(request);
-            //var response = new DataResponse
-            //{
-            //    UoMCategoryId = request.UoMCategoryId,
-            //    name = request.name,
-            //    description = request.description,
-            //    Id = request.Id,
-            //    MeasureType = data,
-            //    Created = request.Created,
-            //    CreatedBy = request.CreatedBy,
-            //    IsActive = request.IsActive,
-            //    LastModified = request.Created,
-            //    LastModifiedBy = request.LastModifiedBy
-            //};
+            var response = new DataResponse
+            {
+                UoMCategoryId = request.UoMCategoryId,
+                name = request.name,
+                description = request.description,
+                Id = request.Id,
+                MeasureType = data,
+                Created = request.Created,
+                CreatedBy = request.CreatedBy,
+                IsActive = request.IsActive,
+                LastModified = request.Created,
+                LastModifiedBy = request.LastModifiedBy
+            };
 
             return response;
         }

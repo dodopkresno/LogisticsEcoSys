@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Inventory.Application.Responses.UomCategory;
+using Inventory.Domain.Enums;
 using Inventory.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,9 @@ namespace Inventory.Application.Mapping
             //    .ForMember(d => d.MeasureType, 
             //        opt => opt.MapFrom<UomCategoryMeasureTypeValueResolver>());
 
-            CreateMap<UomCategory, DataResponse>()
+            CreateMap<UomCategory, DataResponse>().ReverseMap()
                 .IncludeMembers(mt => mt.MeasureType);
+            CreateMap<MeasureType, DataResponse>(MemberList.None);
         }
     }
 }

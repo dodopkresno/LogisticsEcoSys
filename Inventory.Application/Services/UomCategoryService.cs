@@ -37,7 +37,7 @@ namespace Inventory.Application.Services
                 _logger.LogInfo($"Data {item.UoMCategoryId} has been successfully inserted by {item.CreatedBy}.");
             }
             else {
-                throw new InventoryException($"Cann't store double measure type { item.MeasureType.Name }. Duplicate data with { item.name }.");
+                throw new InventoryException($"Double measure type { MeasureType.From(item.Id) } has been detected. Duplicate type with { item.name }.");
             }
             return _uomCategoryMapper.Map(item);
         }
@@ -48,7 +48,7 @@ namespace Inventory.Application.Services
             {
                 throw new InventoryException($"Entity with {request.UCID} is not present");
             }
-            var item = _uomCategoryMapper.Map(request);
+            var item = _uomCategoryMapper.Map(request, objToCheck);
             var objToSearch = await _repository.UoMCategory.GetDataByType(request.Id, trackChanges: false);
 
             if (objToSearch is null || objToSearch.UoMCategoryId == request.UCID)
