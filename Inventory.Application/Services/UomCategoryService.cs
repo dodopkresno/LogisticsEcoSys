@@ -5,7 +5,6 @@ using Inventory.Domain.Enums;
 using Inventory.Domain.Interface;
 using Inventory.Exception;
 using LoggerService;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +54,7 @@ namespace Inventory.Application.Services
             {
                 _repository.UoMCategory.UpdateUomCategory(item);
                 await _repository.SaveAsync();
+                _logger.LogInfo($"Data {item.UoMCategoryId} has been successfully updated by {item.LastModifiedBy}.");
             }
             else
             {

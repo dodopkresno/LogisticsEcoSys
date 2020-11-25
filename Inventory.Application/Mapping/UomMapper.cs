@@ -1,67 +1,70 @@
-﻿//using AutoMapper;
-using Inventory.Application.Interface;
-using Inventory.Application.Requests.UomCategory;
-using Inventory.Application.Responses.Enum;
-using Inventory.Application.Responses.UomCategory;
-using Inventory.Domain.Enums;
-using Inventory.Domain.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Inventory.Application.Interface;
+using Inventory.Application.Requests.Uom;
+using Inventory.Application.Responses.Uom;
+using Inventory.Domain.Enums;
+using Inventory.Domain.Models;
 
 namespace Inventory.Application.Mapping
 {
-    public class UomCategoryMapper : IUomCategoryMapper
+    public class UomMapper : IUomMapper
     {
-       // private readonly IMapper _mapper;
-        public UomCategoryMapper()
-        {
-            //_mapper = mapper;
-        }
+       
+        private readonly IUomCategoryMapper _uomCategoryMapper;
+        private readonly IUomTypeMapper _uomTypeMapper;
 
-        public UomCategory Map(AddUoMCategory request)
+        public UomMapper(IUomCategoryMapper uomCategoryMapper, IUomTypeMapper uomTypeMapper)
+        {
+            
+            _uomCategoryMapper = uomCategoryMapper;
+            _uomTypeMapper = uomTypeMapper;
+        }
+        public UoM Map(AddUom request)
         {
             if (request == null) return null;
-            var item = new UomCategory
+            var item = new UoM
             {
                 name = request.name,
                 description = request.description,
+                ratio = request.ratio,
+                UoMCategoryId = request.UomCategoryId,
                 Id = request.Id,
                 CreatedBy = request.createdBy,
-                Created = request.created,
-                IsActive = request.isActive                
             };
             return item;
         }
-        public UomCategory Map(EditUomCategory request, UomCategory existing)
+        public UoM Map(EditUom request, UoM existing)
         {
             if (request == null) return null;
-            
+
             existing.name = request.name;
             existing.description = request.description;
             existing.Id = request.Id;
+            existing.ratio = request.ratio;
+            existing.UoMCategoryId = request.UomCategoryId;
             existing.LastModifiedBy = request.updatedBy;
             existing.LastModified = DateTime.Now;
 
             return existing;
         }
-        public DataResponse Map(UomCategory request)
+        public UomResponse Map(UoM request)
         {
             if (request == null) return null;
 
-            var data = MeasureType.From(request.Id);
-            //request.MeasureType = data;
-            //DataResponse response = _mapper.Map<DataResponse>(request);
-            //EnumResponse dtEnum = new EnumResponse() { Id = data.Id, Name = data.Name };
-            //var mt = _mapper.Map<EnumResponse>(dtEnum);
-
-            var response = new DataResponse
+            var data = UomType.From(request.Id);
+            
+            var response = new UomResponse
             {
-                UoMCategoryId = request.UoMCategoryId,
+                UoMId = request.UoMCategoryId,
                 name = request.name,
                 description = request.description,
+                ratio = request.ratio,
+                UoMCategoryId = request.UoMCategoryId,
+                UomCategory = _uomCategoryMapper.Map(request.UomCategory),
                 Id = request.Id,
-                MeasureTypeName = data.Name,
+                UomType = _uomTypeMapper.mapSingle(data.Id),
                 Created = request.Created,
                 CreatedBy = request.CreatedBy,
                 IsActive = request.IsActive,

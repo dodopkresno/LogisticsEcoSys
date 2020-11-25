@@ -39,6 +39,9 @@ namespace Infra.IoC
             //ApplicationService
             services.AddScoped<IUomCategoryMapper, UomCategoryMapper>();
             services.AddScoped<IUomCategoryService, UomCategoryService>();
+            services.AddScoped<IUomMapper, UomMapper>();
+            services.AddScoped<IUomTypeMapper, UomTypeMapper>();
+            services.AddScoped<IUomService, UomService>();
         }
     }
 }
