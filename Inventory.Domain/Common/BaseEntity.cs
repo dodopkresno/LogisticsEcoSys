@@ -6,6 +6,7 @@ namespace Inventory.Domain.Common
 {
     public class BaseEntity
     {
+        public string name { get; set; }
         public bool IsActive { get; set; }
         public string CreatedBy { get; set; }
         public DateTime Created { get; set; }

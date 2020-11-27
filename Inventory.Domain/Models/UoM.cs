@@ -10,7 +10,6 @@ namespace Inventory.Domain.Models
     public class UoM : BaseEntity
     {
         public Guid UoMId { get; set; }
-        public string name { get; set; }
         public string description { get; set; }
         public double ratio { get; set; }
         public Guid UoMCategoryId { get; set; }
