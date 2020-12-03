@@ -13,6 +13,8 @@ namespace Inventory.Data.Configuration
         public void Configure(EntityTypeBuilder<MeasureType> builder)
         {
             builder.ToTable("MeasureType", InventoryContext.DEFAULT_SCHEMA);
+           
+            //builder.Ignore(b => b.UomType);
 
             builder.HasKey(mt => mt.Id);
 

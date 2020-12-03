@@ -8,7 +8,7 @@ namespace Inventory.Domain.Models
 {
     public class Company : BaseEntity
     {
-        public Guid CompanyId { get; set; }
+        public Guid companyId { get; set; }
         public string email { get; set; }
         public string phone { get; set; }
         public string mobile { get; set; }
@@ -19,9 +19,9 @@ namespace Inventory.Domain.Models
         public City city { get; set; }
         public string postalCode { get; set; }
         public string internalNote { get; set; }
-        public int Id { get; set; }
-        public CompanyType companyType { get; set; }
-        public ICollection<Contact> contactIds { get; set; }
-        public ICollection<CompanyTag> companyTagIds { get; set; }
+        public Guid parentCompanyId { get; set; }
+        public Company company { get; set; }
+        public Guid partnerId { get; set; }
+        public Partner partner { get; set; }
     }
 }

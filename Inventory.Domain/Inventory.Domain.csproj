@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Inventory.Exception\Inventory.Exception.csproj" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Aggregate\" />
+    <ProjectReference Include="..\Inventory.Exception\Inventory.Exception.csproj" />
   </ItemGroup>
 
 </Project>

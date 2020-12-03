@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Inventory.Domain.Models
 {
-    public class Contact : BaseEntity
+    public class Partner : BaseEntity
     {
-        public Guid contactId { get; set; }
+        public Guid partnerId { get; set; }
         public string title { get; set; }
         public string jobPosition { get; set; }
         public string email { get; set; }
@@ -20,10 +20,12 @@ namespace Inventory.Domain.Models
         public City city { get; set; }
         public string postalCode { get; set; }
         public string internalNote { get; set; }
+        public Guid parentPartnertId { get; set; } //individu (company type individual) have parent company type = company
+        public Partner partner { get; set; }
         public int Id { get; set; }
-        public ContactType contactType { get; set; }
-        public Guid companyId { get; set; }
-        public Company company { get; set; }
-
+        public ContactType contactType { get; set; } //address type
+        public int IdCompanyType { get; set; } //company or individual
+        public CompanyType companyType { get; set; }
+        public ICollection<CompanyTag> companyTagIds { get; set; }
     }
 }

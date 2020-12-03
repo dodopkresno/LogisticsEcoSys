@@ -8,7 +8,7 @@ namespace Inventory.Domain.Models
     public class m2mCompanyTag : BaseEntity
     {
         public Guid m2mCTId { get; set; }
-        public Guid CompanyId { get; set; }
+        public Guid partnerId { get; set; }
         public Guid CompanyTagId { get; set; }
     }
 }

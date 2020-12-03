@@ -13,6 +13,8 @@ namespace Inventory.Domain.Common
         public string LastModifiedBy { get; set; }
         public DateTime? LastModified { get; set; }
 
+        public List<BaseDomainEvent> Events = new List<BaseDomainEvent>();
+
         protected BaseEntity()
         {
             LastModified = DateTime.Now;

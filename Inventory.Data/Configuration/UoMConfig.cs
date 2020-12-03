@@ -39,6 +39,7 @@ namespace Inventory.Data.Configuration
                 .IsRequired();
 
             builder.Ignore(b => b.UomType);
+            builder.Ignore(b => b.Events);
         }
     }
 }

@@ -33,6 +33,8 @@ namespace Inventory.Data.Configuration
                 .IsRequired();
 
             builder.Ignore(b => b.MeasureType);
+
+            builder.Ignore(b => b.Events);
             //builder.HasOne(r => r.MeasureType)
             //    .WithMany()
             //    .HasForeignKey(r => r.Id);

@@ -1,5 +1,7 @@
 ﻿using Inventory.Data.Context;
 using Inventory.Data.Interface;
+using Inventory.Domain.Common;
+using Inventory.Domain.Interface;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Inventory.Data.Data
 {
-    public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : BaseEntity, IAggregateRoot
     {
         protected InventoryContext InventoryContext;
 
