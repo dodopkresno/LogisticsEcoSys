@@ -9,6 +9,7 @@ namespace Inventory.Domain.Models
     public class Partner : BaseEntity
     {
         public Guid partnerId { get; set; }
+        public string partnerPathName { get; set; }
         public string title { get; set; }
         public string jobPosition { get; set; }
         public string email { get; set; }

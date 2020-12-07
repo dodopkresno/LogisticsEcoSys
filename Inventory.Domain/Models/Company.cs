@@ -9,6 +9,7 @@ namespace Inventory.Domain.Models
     public class Company : BaseEntity
     {
         public Guid companyId { get; set; }
+        public string companyPathName { get; set; }
         public string email { get; set; }
         public string phone { get; set; }
         public string mobile { get; set; }
