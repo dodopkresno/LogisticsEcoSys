@@ -5,15 +5,12 @@ using System.Text;
 
 namespace Inventory.Domain.Models
 {
-    public class Warehouse : BaseEntity
+    public class Route : BaseEntity
     {
-        public Guid warehouseId { get; set; }
+        public Guid routeId { get; set; }
         public string description { get; set; }
         public Guid companyId { get; set; }
         public Company company { get; set; }
-        public Guid whCompanyId { get; set; }
-        public Company address { get; set; }
-        public Guid partnerId { get; set; }
-        public Partner personInCharge { get; set; }
+        public ICollection<Rule> rules { get; set; }
     }
 }
